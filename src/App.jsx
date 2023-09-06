@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getAllTasks, sendNewTask, deleteTask, updateTask } from './api/methods'
-import { alertMessage } from './utils/functions'
+import { alertMessage } from './components/dialogs/alert_message'
 import { TaskCard } from './components/task-card/task_card'
 import './style.css'
 
@@ -24,21 +24,6 @@ function App() {
       })
   }
 
-  const handleCompleteTask = id => {}
-
-  const handleRemoveTask = id => {
-    deleteTask(id)
-      .then(() => {
-        fetchTaskList()
-      })
-      .catch(() => {
-        window.alert('Ops!!\n Algo de errado aconteceu, tente novamente.')
-      })
-      .finally(() => {
-        alertMessage('Tarefa removida com sucesso!')
-      })
-  }
-
   const handleAddTask = () => {
     if (newTaskName.trim() !== '') {
       sendNewTask(newTaskName, priority)
@@ -46,15 +31,30 @@ function App() {
           fetchTaskList()
           setNewTaskName('')
         })
-        .catch(() => {
-          alertMessage(
-            'Ops!!\n Algo de errado aconteceu ao adicionar a tarefa, tente novamente.'
-          )
-        })
-        .finally(() => {
-          alertMessage('Tarefa adicionada com sucesso!')
-        })
+        .catch(() =>
+          window.alert('Ops!!\n Algo de errado aconteceu, tente novamente.')
+        )
+        .finally(() => alertMessage('Tarefa adicionada com sucesso!'))
     }
+  }
+
+  const handleCompleteTask = currentTask => {
+    currentTask.isDone = true
+    updateTask(currentTask)
+      .then(() => fetchTaskList())
+      .catch(() =>
+        window.alert('Ops!!\n Algo de errado aconteceu, tente novamente.')
+      )
+      .finally(() => alertMessage('Tarefa concluída com sucesso!'))
+  }
+
+  const handleRemoveTask = currentTask => {
+    deleteTask(currentTask)
+      .then(() => fetchTaskList())
+      .catch(() =>
+        window.alert('Ops!!\n Algo de errado aconteceu, tente novamente.')
+      )
+      .finally(() => alertMessage('Tarefa removida com sucesso!'))
   }
 
   return (

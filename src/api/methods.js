@@ -12,8 +12,12 @@ export const sendNewTask = async (taskText, taskPriority) => {
   })
 }
 
-export const updateTask = async taskId => {
-  return apiCall.put('/task/', { params: { id: taskId } })
+export const updateTask = async currentTask => {
+  return apiCall.put(`/task/${currentTask.id}`, {
+    name: currentTask.name,
+    priority: currentTask.priority,
+    isDone: currentTask.isDone
+  })
 }
 
 export const deleteTask = async taskId => {
