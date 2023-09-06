@@ -4,8 +4,12 @@ export const getAllTasks = async () => {
   return apiCall.get('/task')
 }
 
-export const sendNewTask = async () => {
-  return apiCall.post('/task')
+export const sendNewTask = async (taskText, taskPriority) => {
+  return apiCall.post('/task', {
+    name: taskText,
+    priority: taskPriority,
+    isDone: false
+  })
 }
 
 export const updateTask = async taskId => {
@@ -13,5 +17,5 @@ export const updateTask = async taskId => {
 }
 
 export const deleteTask = async taskId => {
-  return apiCall.delete('/task/', { params: { id: taskId } })
+  return apiCall.delete(`/task/${taskId}`)
 }

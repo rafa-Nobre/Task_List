@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
-import { getAllTasks } from './api/methods'
+import { getAllTasks, sendNewTask, deleteTask, updateTask } from './api/methods'
+import { alertMessage } from './utils/functions'
+import { TaskCard } from './components/task-card/task_card'
 import './style.css'
 
 function App() {
@@ -22,20 +24,43 @@ function App() {
       })
   }
 
-  //const setNewTask = value => {}
-
-  //const setTaskPriority = value => {}
-
   const handleCompleteTask = id => {}
 
-  const handleRemoveTask = id => {}
+  const handleRemoveTask = id => {
+    deleteTask(id)
+      .then(() => {
+        fetchTaskList()
+      })
+      .catch(() => {
+        window.alert('Ops!!\n Algo de errado aconteceu, tente novamente.')
+      })
+      .finally(() => {
+        alertMessage('Tarefa removida com sucesso!')
+      })
+  }
 
-  const handleAddTask = () => {}
+  const handleAddTask = () => {
+    if (newTaskName.trim() !== '') {
+      sendNewTask(newTaskName, priority)
+        .then(() => {
+          fetchTaskList()
+          setNewTaskName('')
+        })
+        .catch(() => {
+          alertMessage(
+            'Ops!!\n Algo de errado aconteceu ao adicionar a tarefa, tente novamente.'
+          )
+        })
+        .finally(() => {
+          alertMessage('Tarefa adicionada com sucesso!')
+        })
+    }
+  }
 
   return (
-    <div className="task-app">
+    <div className="generalContainer">
       <h1>Painel de Tarefas</h1>
-      <div className="task-form">
+      <div className="inputForm">
         <input
           type="text"
           placeholder="Insira uma tarefa..."
@@ -43,32 +68,18 @@ function App() {
           onChange={e => setNewTaskName(e.target.value)}
         />
         <select onChange={e => setPriority(e.target.value)} value={priority}>
-          <option value="Baixa">Baixa</option>
-          <option value="Média">Média</option>
-          <option value="Alta">Alta</option>
-          <option value="Urgente">Urgente</option>
+          <option value="Baixa"> Baixa </option>
+          <option value="Media"> Média </option>
+          <option value="Alta"> Alta </option>
+          <option value="Urgente"> Urgente </option>
         </select>
-        <button onClick={handleAddTask}>Adicionar</button>
+        <button onClick={handleAddTask}> Adicionar </button>
       </div>
-      <ul className="task-list">
-        {tasks.map(task => (
-          <li
-            key={task.id}
-            className={`task ${task.completed ? 'completed' : ''}`}
-          >
-            <span className={`priority ${task.priority.toLowerCase()}`}>
-              {task.priority}
-            </span>
-            <span className="task-text">{task.name}</span>
-            <div className="task-actions">
-              <button onClick={() => handleCompleteTask(task.id)}>
-                Concluir
-              </button>
-              <button onClick={() => handleRemoveTask(task.id)}>Remover</button>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <TaskCard
+        tasks={tasks}
+        onCompleteTask={handleCompleteTask}
+        onDeleteTask={handleRemoveTask}
+      ></TaskCard>
     </div>
   )
 }
