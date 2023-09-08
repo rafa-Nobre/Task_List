@@ -7,3 +7,9 @@
   background-image: url('assets/background.jpg');
   background-size: cover;
 }
+
+.waterMark {
+  position: absolute;
+  bottom: 1%;
+  color: #111;
+}

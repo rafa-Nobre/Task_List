@@ -112,16 +112,20 @@ export const TaskPanel = () => {
         </select>
         <button onClick={handleAddTask}> Adicionar </button>
       </div>
-      <ul className="listSection">
-        {sortedTasks.map(task => (
-          <TaskCard
-            task={task}
-            onCompleteTask={handleCompleteTask}
-            onDeleteTask={handleRemoveTask}
-            onRetrieve={handleRetrieveTask}
-          ></TaskCard>
-        ))}
-      </ul>
+      {sortedTasks.length === 0 ? (
+        <p className="emptyList">Eita, que vazio!</p>
+      ) : (
+        <ul className="listSection">
+          {sortedTasks.map(task => (
+            <TaskCard
+              task={task}
+              onCompleteTask={handleCompleteTask}
+              onDeleteTask={handleRemoveTask}
+              onRetrieve={handleRetrieveTask}
+            ></TaskCard>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }

@@ -67,6 +67,13 @@
   cursor: pointer;
 }
 
+.emptyList {
+  font-size: 24px;
+  text-align: center;
+  justify-self: center;
+  color: black;
+}
+
 .listSection {
   list-style: none;
   padding: 0;
