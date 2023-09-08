@@ -11,4 +11,4 @@ Infelizmente não foram feitos casos de teste e nem o Bônus 1, já os Bônus 2 
 Para este requisito foi usado o Mockapi.io (https://mockapi.io/) para as requisições. Vale ressaltar que estou usando <br/>
 a biblioteca Axios (https://axios-http.com/ptbr/) para realizar as chamadas à API. <br/>
 ### Bônus 3
-Quanto a este estou usando o Vercel (https://vercel.com/) para deploy. Você consegue acessa-la por meio deste link: .
+Quanto a este estou usando o Vercel (https://vercel.com/) para deploy. Você consegue a aplicação por meio desse link: https://task-list-nine-bice.vercel.app/.
