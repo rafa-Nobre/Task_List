@@ -1,6 +1,12 @@
 import { useRef, useState } from 'react'
 import { updateTask } from '../../api/methods'
 import { alertMessage } from '../dialogs/alert_message'
+import cancel_icon from '../../assets/cancel_icon.png'
+import done_icon from '../../assets/done_icon.png'
+import edit_icon from '../../assets/edit_icon.png'
+import return_icon from '../../assets/return_icon.png'
+import save_icon from '../../assets/save_icon.png'
+import trash_icon from '../../assets/trash_icon.png'
 import './style.css'
 
 export const TaskCard = ({
@@ -96,20 +102,10 @@ export const TaskCard = ({
               className="buttonComplete"
               onClick={() => handleSaveEdit(task)}
             >
-              <img
-                src="src/assets/save_icon.png"
-                alt="Save"
-                width="20"
-                height="20"
-              />
+              <img src={save_icon} alt="Save" width="20" height="20" />
             </button>
             <button className="buttonDelete" onClick={() => handleCancelEdit()}>
-              <img
-                src="src/assets/cancel_icon.png"
-                alt="Cancel"
-                width="20"
-                height="20"
-              />
+              <img src={cancel_icon} alt="Cancel" width="20" height="20" />
             </button>
           </>
         ) : (
@@ -119,12 +115,7 @@ export const TaskCard = ({
                 className="buttonRetrieve"
                 onClick={() => onRetrieve(task)}
               >
-                <img
-                  src="src/assets/return_icon.png"
-                  alt="Done"
-                  width="20"
-                  height="20"
-                />
+                <img src={return_icon} alt="Done" width="20" height="20" />
               </button>
             ) : (
               <>
@@ -132,31 +123,16 @@ export const TaskCard = ({
                   className="buttonComplete"
                   onClick={() => onCompleteTask(task)}
                 >
-                  <img
-                    src="src/assets/done_icon.png"
-                    alt="Done"
-                    width="20"
-                    height="20"
-                  />
+                  <img src={done_icon} alt="Done" width="20" height="20" />
                 </button>
                 <button
                   className="buttonDelete"
                   onClick={() => onDeleteTask(task.id)}
                 >
-                  <img
-                    src="src/assets/trash_icon.png"
-                    alt="Remove"
-                    width="20"
-                    height="20"
-                  />
+                  <img src={trash_icon} alt="Remove" width="20" height="20" />
                 </button>
                 <button className="buttonEdit" onClick={() => handleEdit(task)}>
-                  <img
-                    src="src/assets/edit_icon.png"
-                    alt="Edit"
-                    width="20"
-                    height="20"
-                  />
+                  <img src={edit_icon} alt="Edit" width="20" height="20" />
                 </button>
               </>
             )}
