@@ -1,0 +1,70 @@
+.generalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.generalContainer h1 {
+  color: black;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.inputForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.inputForm input[type='text'] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.inputForm select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.inputForm button {
+  padding: 10px 15px;
+  background-color: #4b0082;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.listSection {
+  list-style: none;
+  padding: 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.listSection::-webkit-scrollbar {
+  width: 6px;
+  margin-right: 10px;
+}
+
+.listSection::-webkit-scrollbar-thumb {
+  background-color: #4b0082;
+  border-radius: 6px;
+}
+
+.listSection::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+}

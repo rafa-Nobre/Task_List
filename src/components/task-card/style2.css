@@ -6,10 +6,10 @@
   padding: 10px;
   background-color: #f9f9f9;
   margin-bottom: 10px;
+  margin-right: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   max-width: none;
-  min-height: 0;
 }
 
 .completed {
@@ -64,21 +64,6 @@
 .buttonDelete {
   background-color: #a32420;
   color: #fff;
-  border: none;
-  border-radius: 4px;
-  margin-left: 5px;
-  cursor: pointer;
-  padding: 5px 10px;
-}
-
-.buttonEdit {
-  background-color: #fff;
-  margin-left: 5px;
-  padding: 5px 5px;
-}
-
-.buttonRetrieve {
-  background-color: #fff;
   border: none;
   border-radius: 4px;
   margin-left: 5px;

@@ -1,0 +1,69 @@
+.generalContainer {
+  display: flex;
+  flex-direction: column; /* Disposição em coluna (elementos empilhados) */
+  align-items: center; /* Centraliza horizontalmente */
+  justify-content: center;
+  max-width: 400px;
+  padding: 20px;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Cor de fundo branca para o painel */
+  border-radius: 8px; /* Cantos arredondados */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  text-align: center;
+
+  /* align-content: center;
+  max-width: none;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif; */
+}
+
+.generalContainer h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.inputForm {
+  display: flex;
+  flex-direction: row; /* Elementos empilhados verticalmente */
+  align-items: center; /* Centraliza horizontalmente */
+  margin-bottom: 20px;
+
+  /* display: flex;
+  margin-bottom: 20px; */
+}
+
+.inputForm input[type='text'],
+.inputForm select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.inputForm button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  /* padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer; */
+}
+
+.listSection {
+  list-style: none;
+  padding: 0;
+}
