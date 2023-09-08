@@ -1,15 +1,14 @@
 .task {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   background-color: #f9f9f9;
+  margin-right: 10px;
   margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  max-width: none;
-  min-height: 0;
+  width: 600px;
 }
 
 .completed {
@@ -47,41 +46,32 @@
   margin-left: 10px;
   color: #111;
   max-width: 70%;
-  white-space: nowrap;
+  white-space: ellipse;
   overflow: hidden;
 }
 
 .buttonComplete {
-  background-color: #6b8e23;
   color: #fff;
-  border: none;
+  background-color: #6b8e23;
   border-radius: 4px;
+  border: none;
   margin-left: 10px;
-  cursor: pointer;
   padding: 5px 10px;
+  cursor: pointer;
 }
 
 .buttonDelete {
-  background-color: #a32420;
   color: #fff;
+  background-color: #a32420;
   border: none;
   border-radius: 4px;
+  padding: 5px 10px;
   margin-left: 5px;
   cursor: pointer;
-  padding: 5px 10px;
 }
 
 .buttonEdit {
   background-color: #fff;
-  margin-left: 5px;
   padding: 5px 5px;
-}
-
-.buttonRetrieve {
-  background-color: #fff;
-  border: none;
-  border-radius: 4px;
   margin-left: 5px;
-  cursor: pointer;
-  padding: 5px 10px;
 }

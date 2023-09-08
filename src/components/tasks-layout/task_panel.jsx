@@ -5,10 +5,10 @@ import {
   sendNewTask,
   updateTask
 } from '../../api/methods'
-import { alertMessage } from '../../components/dialogs/alert_message'
-import { TaskCard } from '../../components/task-card/task_card'
+import { alertMessage } from '../dialogs/alert_message'
+import { TaskCard } from '../task-card/task_card'
 import { sortTasksByPriority, sortAllTasks } from '../../utils/functions'
-import './style2.css'
+import './style.css'
 
 export const TaskPanel = () => {
   const [tasks, setTasks] = useState([])
@@ -70,7 +70,7 @@ export const TaskPanel = () => {
   return (
     <div className="generalContainer">
       <h1>Painel de Tarefas</h1>
-      <div>
+      <div className="filterPanel">
         <select
           onChange={e => setFilterPriority(e.target.value)}
           value={filterPriority}

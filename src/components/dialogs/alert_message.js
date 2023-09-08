@@ -3,8 +3,8 @@ export const alertMessage = msg => {
   floatingDiv.textContent = msg
   floatingDiv.style.cssText = `
   position: fixed;
-  top: 50%;
-  left: 50%;
+  bottom: 2%;
+  right: 2%;
   transform: translate(-50%, -50%);
   background-color: #333;
   color: #fff;

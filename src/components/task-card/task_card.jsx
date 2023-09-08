@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './style2.css'
+import './style.css'
 import { updateTask } from '../../api/methods'
 import { alertMessage } from '../dialogs/alert_message'
 

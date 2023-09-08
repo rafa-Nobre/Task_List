@@ -1,5 +1,5 @@
-import { TaskPanel } from './layouts/task_layout/task_panel'
-import './style.css'
+import { TaskPanel } from './components/tasks-layout/task_panel'
+import './app.css'
 
 function App() {
   return (
