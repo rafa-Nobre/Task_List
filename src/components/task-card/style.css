@@ -70,6 +70,7 @@
   cursor: pointer;
 }
 
+.buttonRetrieve,
 .buttonEdit {
   background-color: #fff;
   padding: 5px 5px;

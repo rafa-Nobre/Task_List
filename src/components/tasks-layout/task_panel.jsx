@@ -67,6 +67,16 @@ export const TaskPanel = () => {
       .finally(() => alertMessage('Tarefa removida com sucesso!'))
   }
 
+  const handleRetrieveTask = async currentTask => {
+    currentTask.isDone = false
+    await updateTask(currentTask)
+      .then(() => fetchTaskList())
+      .catch(() =>
+        window.alert('Ops!!\n Algo de errado aconteceu, tente novamente.')
+      )
+      .finally(() => alertMessage('Tarefa revertida com sucesso!'))
+  }
+
   return (
     <div className="generalContainer">
       <h1>Painel de Tarefas</h1>
@@ -108,6 +118,7 @@ export const TaskPanel = () => {
             task={task}
             onCompleteTask={handleCompleteTask}
             onDeleteTask={handleRemoveTask}
+            onRetrieve={handleRetrieveTask}
           ></TaskCard>
         ))}
       </ul>

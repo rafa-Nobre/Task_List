@@ -1,38 +1,57 @@
-import { useState } from 'react'
-import './style.css'
+import { useRef, useState } from 'react'
 import { updateTask } from '../../api/methods'
 import { alertMessage } from '../dialogs/alert_message'
+import './style.css'
 
-export const TaskCard = ({ task, onCompleteTask, onDeleteTask }) => {
+export const TaskCard = ({
+  task,
+  onCompleteTask,
+  onDeleteTask,
+  onRetrieve
+}) => {
   const [editingTask, setEditingTask] = useState(null)
   const [newText, setNewText] = useState('')
   const [newPriority, setNewPriority] = useState('')
+  const inputCardRef = useRef(null)
 
   const handleEdit = currentTask => {
     setEditingTask(currentTask.id)
     setNewText(currentTask.name)
     setNewPriority(currentTask.priority)
+
+    inputCardRef.current.focus()
   }
 
-  //TODO finalizar essa lógica
   const handleSaveEdit = async currentTask => {
-    currentTask.name = newText
-    currentTask.priority = newPriority
-    await updateTask(currentTask)
-      .then(() => {
-        alertMessage('Tarefa editada com sucesso!')
-      })
-      .catch(() => {
-        window.alert('Ops!!\n Algo de errado aconteceu, tente novamente.')
-      })
-      .finally(() => {
-        setEditingTask(null)
-        setNewText('')
-        setNewPriority('')
-      })
+    if (currentTask.name != newText || currentTask.priority != newPriority) {
+      currentTask.name = newText
+      currentTask.priority = newPriority
+      await updateTask(currentTask)
+        .then(() => {
+          alertMessage('Tarefa editada com sucesso!')
+        })
+        .catch(() => {
+          window.alert('Ops!!\n Algo de errado aconteceu, tente novamente.')
+        })
+        .finally(() => handleCancelEdit())
+    } else {
+      handleCancelEdit()
+    }
   }
 
-  const onCancelEdit = () => {
+  const handleEditBlur = () => {
+    if (editingTask != null) {
+      handleSaveEdit(task)
+    }
+  }
+
+  const handleKeyPress = action => {
+    if (action.key === 'Enter' && editingTask != null) {
+      handleSaveEdit(task)
+    }
+  }
+
+  const handleCancelEdit = () => {
     setEditingTask(null)
     setNewText('')
     setNewPriority('')
@@ -45,6 +64,7 @@ export const TaskCard = ({ task, onCompleteTask, onDeleteTask }) => {
           <select
             value={newPriority}
             onChange={element => setNewPriority(element.target.value)}
+            onBlur={() => handleSaveEdit(task)}
           >
             <option value="Urgente">Urgente</option>
             <option value="Alta">Alta</option>
@@ -60,7 +80,10 @@ export const TaskCard = ({ task, onCompleteTask, onDeleteTask }) => {
           <input
             type="text"
             value={newText}
-            onChange={element => setNewText(element.target.value)}
+            onChange={e => setNewText(e.target.value)}
+            onBlur={handleEditBlur}
+            onKeyDown={handleKeyPress}
+            ref={inputCardRef}
           />
         ) : (
           task.name
@@ -80,7 +103,7 @@ export const TaskCard = ({ task, onCompleteTask, onDeleteTask }) => {
                 height="20"
               />
             </button>
-            <button className="buttonDelete" onClick={() => onCancelEdit()}>
+            <button className="buttonDelete" onClick={() => handleCancelEdit()}>
               <img
                 src="src/assets/cancel_icon.png"
                 alt="Cancel"
@@ -92,10 +115,9 @@ export const TaskCard = ({ task, onCompleteTask, onDeleteTask }) => {
         ) : (
           <>
             {task.isDone ? (
-              <>
-                {/* <button
+              <button
                 className="buttonRetrieve"
-                onClick={() => (task.isDone = false)}
+                onClick={() => onRetrieve(task)}
               >
                 <img
                   src="src/assets/return_icon.png"
@@ -103,8 +125,7 @@ export const TaskCard = ({ task, onCompleteTask, onDeleteTask }) => {
                   width="20"
                   height="20"
                 />
-              </button> */}
-              </>
+              </button>
             ) : (
               <>
                 <button
